@@ -93,4 +93,63 @@ describe('`class SequenceCharacter`', () => {
     expect(P.matches('p')).toBe(true);
     expect(P.matches('B')).toBe(false);
   });
+
+  test('`complements()`', () => {
+    var A = new SequenceCharacter('A');
+
+    // complementing string characters
+    expect(A.complements('U')).toBe(true);
+    expect(A.complements('C')).toBe(false);
+
+    var g = new SequenceCharacter('g');
+
+    // uppercase and lowercase
+    expect(A.complements('u')).toBe(true);
+    expect(g.complements('C')).toBe(true);
+
+    // U and T
+    var U = new SequenceCharacter('U');
+    var t = new SequenceCharacter('t');
+
+    expect(U.complements('A')).toBe(true);
+    expect(U.complements('g')).toBe(true);
+    expect(U.complements('T')).toBe(false);
+
+    expect(t.complements('a')).toBe(true);
+    expect(t.complements('G')).toBe(true);
+    expect(t.complements('c')).toBe(false);
+
+    // complementing sequence character instances
+    expect(A.complements(new SequenceCharacter('U'))).toBe(true);
+    expect(A.complements(new SequenceCharacter('G'))).toBe(false);
+
+    var N = new SequenceCharacter('N');
+
+    // the any character complements everything (except for gap characters)
+    expect(N.complements('A')).toBe(true);
+    expect(N.complements('p')).toBe(true);
+    expect(N.complements('.')).toBe(false);
+    expect(N.complements('-')).toBe(false);
+
+    // empty string
+    expect(N.complements('')).toBe(false);
+
+    // not a single character
+    expect(N.complements('AG')).toBe(false);
+
+    var period = new SequenceCharacter('.');
+    var dash = new SequenceCharacter('-');
+
+    // gap characters can complement gap characters
+    expect(period.complements('.')).toBe(true);
+    expect(period.complements('-')).toBe(true);
+    expect(dash.complements('.')).toBe(true);
+    expect(dash.complements('-')).toBe(true);
+
+    // gap characters don't complement anything else (including N)
+    expect(period.complements('a')).toBe(false);
+    expect(period.complements('N')).toBe(false);
+    expect(dash.complements('G')).toBe(false);
+    expect(dash.complements('n')).toBe(false);
+  });
 });
