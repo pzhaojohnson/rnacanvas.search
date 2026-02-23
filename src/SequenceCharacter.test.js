@@ -55,12 +55,6 @@ describe('`class SequenceCharacter`', () => {
     expect(n.matches('z')).toBe(true);
     expect(n.matches('N')).toBe(true);
 
-    // empty string
-    expect(N.matches('')).toBe(false);
-
-    // not a single character
-    expect(N.matches('AG')).toBe(false);
-
     // some special IUPAC characters
     var R = new SequenceCharacter('R');
     var d = new SequenceCharacter('d');
@@ -92,6 +86,12 @@ describe('`class SequenceCharacter`', () => {
     expect(P.matches('P')).toBe(true);
     expect(P.matches('p')).toBe(true);
     expect(P.matches('B')).toBe(false);
+
+    // empty string
+    expect(() => N.matches('')).toThrow();
+
+    // not a single character
+    expect(() => N.matches('AG')).toThrow();
   });
 
   test('`complements()`', () => {
@@ -131,12 +131,6 @@ describe('`class SequenceCharacter`', () => {
     expect(N.complements('.')).toBe(false);
     expect(N.complements('-')).toBe(false);
 
-    // empty string
-    expect(N.complements('')).toBe(false);
-
-    // not a single character
-    expect(N.complements('AG')).toBe(false);
-
     var period = new SequenceCharacter('.');
     var dash = new SequenceCharacter('-');
 
@@ -151,5 +145,11 @@ describe('`class SequenceCharacter`', () => {
     expect(period.complements('N')).toBe(false);
     expect(dash.complements('G')).toBe(false);
     expect(dash.complements('n')).toBe(false);
+
+    // empty string
+    expect(() => N.complements('')).toThrow();
+
+    // not a single character
+    expect(() => N.complements('AG')).toThrow();
   });
 });
