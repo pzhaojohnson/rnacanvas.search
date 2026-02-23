@@ -110,10 +110,15 @@ const matches: { [character: string]: string[] | undefined } = {
   'V': [...'ACGRSM'],
 };
 
+/**
+ * R and Y are IUPAC codes.
+ */
 const complements: { [character: string]: string[] | undefined } = {
   'A': [...'UT'],
   'C': [...'G'],
-  'G': [...'CUT'],
-  'U': [...'AG'],
-  'T': [...'AG'],
+  'G': [...'CUTY'],
+  'U': [...'AGR'],
+  'T': [...'AGR'],
+  'R': [...'UT'],
+  'Y': [...'G'],
 };

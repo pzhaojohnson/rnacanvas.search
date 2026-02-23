@@ -134,6 +134,17 @@ describe('`class SequenceCharacter`', () => {
     expect(A.complements(new SequenceCharacter('U'))).toBe(true);
     expect(A.complements(new SequenceCharacter('G'))).toBe(false);
 
+    // R and Y
+    var R = new SequenceCharacter('R');
+    var y = new SequenceCharacter('y');
+
+    expect(R.complements('U')).toBe(true);
+    expect(R.complements('t')).toBe(true);
+    expect(R.complements('A')).toBe(false);
+
+    expect(g.complements('Y')).toBe(true);
+    expect(A.complements('Y')).toBe(false);
+
     var N = new SequenceCharacter('N');
 
     // the any character complements everything (except for gap characters)
