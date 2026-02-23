@@ -50,7 +50,7 @@ new SequenceCharacter('AG'); // throws
 new SequenceCharacter('asdf'); // throws
 ```
 
-All single characters may be input to the constructor, though.
+Any character may be input to the constructor, though.
 
 ### `toString()`
 
