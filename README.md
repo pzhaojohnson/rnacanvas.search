@@ -86,7 +86,6 @@ A.matches(new SequenceCharacter('A')); // true
 ```javascript
 var A = new SequenceCharacter('A');
 
-// IUPAC codes are recognized
 A.matches('R'); // true
 A.matches('Y'); // false
 
@@ -103,4 +102,17 @@ var dash = new SequenceCharacter('-');
 period.matches('.'); // true
 dash.matches('-'); // true
 period.matches('N'); // false
+```
+
+Will throw for empty strings and strings containing more than one character.
+
+```javascript
+var A = new SequenceCharacter('A');
+
+// empty string
+A.matches(''); // throws
+
+// strings containing more than one character
+A.matches('AG'); // throws
+A.matches('asdf'); // throws
 ```
