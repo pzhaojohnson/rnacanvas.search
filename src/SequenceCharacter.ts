@@ -33,7 +33,15 @@ export class SequenceCharacter {
 
     otherCharacter = otherCharacter.toUpperCase();
 
-    if (character === 'N' || otherCharacter === 'N') {
+    if (gapCharacters.includes(character) && gapCharacters.includes(otherCharacter)) {
+      return true;
+    } else if (gapCharacters.includes(character) || gapCharacters.includes((otherCharacter))) {
+      return false;
+    }
+
+    if (character === 'N' && !gapCharacters.includes(otherCharacter)) {
+      return true;
+    } else if (otherCharacter === 'N' && !gapCharacters.includes(character)) {
       return true;
     }
 
@@ -59,8 +67,6 @@ export class SequenceCharacter {
 
     otherCharacter = otherCharacter.toUpperCase();
 
-    let gapCharacters = [...'.-'];
-
     if (gapCharacters.includes(character) && gapCharacters.includes(otherCharacter)) {
       return true;
     } else if (gapCharacters.includes(character) || gapCharacters.includes((otherCharacter))) {
@@ -81,6 +87,8 @@ export class SequenceCharacter {
   }
 }
 
+const gapCharacters = [...'.-'];
+
 /**
  * IUPAC nucleic acid codes.
  */
@@ -100,8 +108,6 @@ const matches: { [character: string]: string[] | undefined } = {
   'D': [...'AGUTRWK'],
   'H': [...'ACUTYWM'],
   'V': [...'ACGRSM'],
-  '.': [...'.-'],
-  '-': [...'-.'],
 };
 
 const complements: { [character: string]: string[] | undefined } = {

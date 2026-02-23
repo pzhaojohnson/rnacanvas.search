@@ -87,6 +87,17 @@ describe('`class SequenceCharacter`', () => {
     expect(P.matches('p')).toBe(true);
     expect(P.matches('B')).toBe(false);
 
+    // gap characters
+    var period = new SequenceCharacter('.');
+    var dash = new SequenceCharacter('-');
+
+    expect(period.matches('.')).toBe(true);
+    expect(dash.matches('.')).toBe(true);
+
+    // gap characters can only match other gap characters
+    expect(period.matches('N')).toBe(false);
+    expect(N.matches('-')).toBe(false);
+
     // empty string
     expect(() => N.matches('')).toThrow();
 
