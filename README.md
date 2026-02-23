@@ -63,3 +63,44 @@ A.toString(); // "A"
 var R = new SequenceCharacter('R');
 R.toString(); // "R"
 ```
+
+### `matches()`
+
+Returns `true` if the character matches the input character.
+
+```javascript
+var A = new SequenceCharacter('A');
+
+A.matches('A'); // true
+A.matches('C'); // false
+
+// case doesn't matter
+A.matches('a'); // true
+
+// works for sequence character instances too
+A.matches(new SequenceCharacter('A')); // true
+```
+
+[IUPAC nucleic acid codes](https://www.bioinformatics.org/sms/iupac.html) are recognized.
+
+```javascript
+var A = new SequenceCharacter('A');
+
+// IUPAC codes are recognized
+A.matches('R'); // true
+A.matches('Y'); // false
+
+var N = new SequenceCharacter('N');
+
+// the any character matches any non-gap character
+N.matches('A'); // true
+N.matches('p'); // true
+
+var period = new SequenceCharacter('.');
+var dash = new SequenceCharacter('-');
+
+// gap characters only match other gap characters
+period.matches('.'); // true
+dash.matches('-'); // true
+period.matches('N'); // false
+```
