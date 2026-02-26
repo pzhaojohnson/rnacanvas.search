@@ -3,16 +3,16 @@ import { Motif } from './Motif';
 describe('`class Motif`', () => {
   test('`constructor()`', () => {
     // empty motif
-    var motif = new Motif('');
-    expect(motif.toString()).toBe('');
+    var emptyMotif = new Motif('');
+    expect(emptyMotif.toString()).toBe('');
 
     // single character
-    var motif = new Motif('G');
-    expect(motif.toString()).toBe('G');
+    var G = new Motif('G');
+    expect(G.toString()).toBe('G');
 
     // multiple characters
-    var motif = new Motif('CCS');
-    expect(motif.toString()).toBe('CCS');
+    var CCS = new Motif('CCS');
+    expect(CCS.toString()).toBe('CCS');
   });
 
   test('`toString()`', () => {
