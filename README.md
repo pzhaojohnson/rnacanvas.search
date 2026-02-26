@@ -50,18 +50,19 @@ new SequenceCharacter('AG'); // throws
 new SequenceCharacter('asdf'); // throws
 ```
 
-Any character may be input to the constructor, though.
+A `SequenceCharacter` instance may be created for any character, though.
 
 ### `toString()`
 
-Simply returns the character as a string.
+Returns the character as a string.
 
 ```javascript
 var A = new SequenceCharacter('A');
 A.toString(); // "A"
 
-var R = new SequenceCharacter('R');
-R.toString(); // "R"
+// preserves case
+var r = new SequenceCharacter('r');
+r.toString(); // "r"
 ```
 
 ### `matches()`
@@ -95,16 +96,19 @@ var N = new SequenceCharacter('N');
 N.matches('A'); // true
 N.matches('p'); // true
 
+// gap characters
 var period = new SequenceCharacter('.');
 var dash = new SequenceCharacter('-');
 
 // gap characters only match other gap characters
 period.matches('.'); // true
 dash.matches('-'); // true
-period.matches('N'); // false
+
+N.matches('.'); // false
+N.matches('-'); // false
 ```
 
-Will throw for empty strings and strings containing more than one character.
+Throws for empty strings and strings containing more than one character.
 
 ```javascript
 var A = new SequenceCharacter('A');
@@ -115,4 +119,71 @@ A.matches(''); // throws
 // strings containing more than one character
 A.matches('AG'); // throws
 A.matches('asdf'); // throws
+```
+
+### `complements()`
+
+Returns `true` if the character complements the specified character.
+
+```javascript
+var A = new SequenceCharacter('A');
+
+A.complements('U'); // true
+A.complements('A'); // false
+
+// T and U are interchangeable
+A.complements('T'); // true
+
+// case doesn't matter
+A.complements('u'); // true
+
+// sequence character instances can also be input
+A.complements(new SequenceCharacter('U')); // true
+```
+
+[IUPAC nucleic acid codes](https://www.bioinformatics.org/sms/iupac.html) are recognized.
+
+```javascript
+var G = new SequenceCharacter('G');
+
+// since G can pair with C, U and T
+G.complements('Y'); // true
+
+var U = new SequenceCharacter('U');
+
+// since U can pair with A or G
+U.complements('R'); // true
+
+var N = new SequenceCharacter('N');
+
+// the any character complements any non-gap character
+N.complements('A'); // true
+
+// gap characters
+var period = new SequenceCharacter('.');
+var dash = new SequenceCharacter('-');
+
+// gap characters can only complement other gap characters
+period.complements('.'); // true
+period.complements('-'); // true
+
+N.complements('.'); // false
+N.complements('-'); // false
+```
+
+Note that the special IUPAC codes
+`S`, `W`, `K`, `M`, `B`, `D`, `H` and `V`
+have no complements.
+
+This method throws for empty strings and strings containing more than one character.
+
+```javascript
+var A = new SequenceCharacter('A');
+
+// empty string
+A.complements(''); // throws
+
+// strings containing more than one character
+A.complements('AG'); // throws
+A.complements('asdf'); // throws
 ```
