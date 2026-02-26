@@ -163,7 +163,7 @@ N.complements('A'); // true
 var period = new SequenceCharacter('.');
 var dash = new SequenceCharacter('-');
 
-// gap characters can only complement other gap characters
+// gap characters only complement other gap characters
 period.complements('.'); // true
 period.complements('-'); // true
 
