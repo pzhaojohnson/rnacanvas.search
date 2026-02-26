@@ -21,14 +21,17 @@ Represents a motif.
 
 ```javascript
 var CUGCCA = new Motif('CUGCCA');
+
 CUGCCA.toString(); // "CUGCCA"
 
 // a single character motif
 var A = new Motif('A');
+
 A.toString(); // "A"
 
 // empty motifs are accepted
 var emptyMotif = new Motif('');
+
 emptyMotif.toString(); // ""
 ```
 
