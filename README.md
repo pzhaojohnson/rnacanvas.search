@@ -45,6 +45,18 @@ var CUGCCA = new Motif('CUGCCA');
 CUGCCA.toString(); // "CUGCCA"
 ```
 
+## `function removeGapCharacters()`
+
+Returns a new string with all periods and dashes having been removed.
+
+Removing gap characters can make searching for motifs and complements a simpler task.
+
+```javascript
+removeGapCharacters('.A-GU..C--'); // "AGUC"
+
+removeGapCharacters('---...'); // ""
+```
+
 ## `class SequenceCharacter`
 
 Represents a character in a sequence.
