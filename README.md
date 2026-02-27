@@ -47,7 +47,7 @@ CUGCCA.toString(); // "CUGCCA"
 
 ## `function removeGapCharacters()`
 
-Returns a new string with all periods and dashes having been removed.
+Returns a new string with all periods and dashes having been removed from the input string.
 
 Removing gap characters can make searching for motifs and complements a simpler task.
 
