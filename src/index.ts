@@ -1,6 +1,3 @@
-import { Motif } from './Motif';
-export { Motif };
-
 import { removeGapCharacters } from './removeGapCharacters';
 export { removeGapCharacters };
 
