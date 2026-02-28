@@ -120,17 +120,17 @@ N.matches('.'); // false
 N.matches('-'); // false
 ```
 
-Throws for empty strings and strings containing more than one character.
+Returns `false` for empty strings and strings containing more than one character.
 
 ```javascript
 var A = new SequenceCharacter('A');
 
 // empty string
-A.matches(''); // throws
+A.matches(''); // false
 
 // strings containing more than one character
-A.matches('AG'); // throws
-A.matches('asdf'); // throws
+A.matches('AG'); // false
+A.matches('asdf'); // false
 ```
 
 ### `complements()`
@@ -187,17 +187,18 @@ Note that the special IUPAC codes
 `S`, `W`, `K`, `M`, `B`, `D`, `H` and `V`
 have no complements.
 
-This method throws for empty strings and strings containing more than one character.
+This method returns `false` for empty strings
+and strings containing more than one character.
 
 ```javascript
 var A = new SequenceCharacter('A');
 
 // empty string
-A.complements(''); // throws
+A.complements(''); // false
 
 // strings containing more than one character
-A.complements('AG'); // throws
-A.complements('asdf'); // throws
+A.complements('AG'); // false
+A.complements('asdf'); // false
 ```
 
 ## `function isWobblePair()`
