@@ -12,37 +12,7 @@ All exports of this package can be accessed as named imports.
 
 ```javascript
 // some example imports
-import { Motif, SequenceCharacter } from '@rnacanvas/search';
-```
-
-## `class Motif`
-
-Represents a motif.
-
-```javascript
-var CUGCCA = new Motif('CUGCCA');
-
-CUGCCA.toString(); // "CUGCCA"
-
-// a single character motif
-var A = new Motif('A');
-
-A.toString(); // "A"
-
-// empty motifs are accepted
-var emptyMotif = new Motif('');
-
-emptyMotif.toString(); // ""
-```
-
-### `toString()`
-
-Returns the motif as a string.
-
-```javascript
-var CUGCCA = new Motif('CUGCCA');
-
-CUGCCA.toString(); // "CUGCCA"
+import { removeGapCharacters, SequenceCharacter } from '@rnacanvas/search';
 ```
 
 ## `function removeGapCharacters()`
