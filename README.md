@@ -229,3 +229,41 @@ A.complements(''); // throws
 A.complements('AG'); // throws
 A.complements('asdf'); // throws
 ```
+
+## `function isWobblePair()`
+
+Returns `true` if the two input characters form a `G:U` or `G:T` pair.
+
+```javascript
+isWobblePair('G', 'U'); // true
+isWobblePair('G', 'T'); // true
+
+isWobblePair('A', 'U'); // false
+isWobblePair('G', 'C'); // false
+
+// order doesn't matter
+isWobblePair('U', 'G'); // true
+
+// case doesn't matter
+isWobblePair('g', 'u'); // true
+
+var G = new SequenceCharacter('G');
+var U = new SequenceCharacter('U');
+
+// handles sequence character instances
+isWobblePair(G, U); // true
+
+var A = new SequenceCharacter('A');
+
+isWobblePair(A, U); // false
+```
+
+Returns `false` for empty strings
+and strings containing more than one character.
+
+```javascript
+isWobblePair('G', ''); // false
+
+// each string must be a single character
+isWobblePair('G', 'UT'); // false
+```
