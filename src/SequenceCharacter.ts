@@ -23,10 +23,8 @@ export class SequenceCharacter {
       otherCharacter = otherCharacter.toString();
     }
 
-    if (otherCharacter.length == 0) {
-      throw new Error('Other character cannot be an empty string.');
-    } else if (otherCharacter.length > 1) {
-      throw new Error('Other character cannot be multiple characters.');
+    if (otherCharacter.length != 1) {
+      return false;
     }
 
     let character = this.#character.toUpperCase();
@@ -57,10 +55,8 @@ export class SequenceCharacter {
       otherCharacter = otherCharacter.toString();
     }
 
-    if (otherCharacter.length == 0) {
-      throw new Error('Other character cannot be an empty string.');
-    } else if (otherCharacter.length > 1) {
-      throw new Error('Other character cannot be multiple characters.');
+    if (otherCharacter.length != 1) {
+      return false;
     }
 
     let character = this.#character.toUpperCase();

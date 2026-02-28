@@ -99,10 +99,11 @@ describe('`class SequenceCharacter`', () => {
     expect(N.matches('-')).toBe(false);
 
     // empty string
-    expect(() => N.matches('')).toThrow();
+    expect(N.matches('')).toBe(false);
 
     // not a single character
-    expect(() => N.matches('AG')).toThrow();
+    expect(N.matches('AG')).toBe(false);
+    expect(N.matches('asdf')).toBe(false);
   });
 
   test('`complements()`', () => {
@@ -169,9 +170,10 @@ describe('`class SequenceCharacter`', () => {
     expect(dash.complements('n')).toBe(false);
 
     // empty string
-    expect(() => N.complements('')).toThrow();
+    expect(N.complements('')).toBe(false);
 
     // not a single character
-    expect(() => N.complements('AG')).toThrow();
+    expect(N.complements('AG')).toBe(false);
+    expect(N.complements('asdf')).toBe(false);
   });
 });
