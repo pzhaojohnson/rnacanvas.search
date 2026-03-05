@@ -146,11 +146,12 @@ and the `cutoff` value is `1` by default.
 [IUPAC nucleic acid codes](https://www.bioinformatics.org/sms/iupac.html) are recognized by the `complementsSearch()` function.
 
 ```javascript
-var motif = 'CYRCCA';
+// Y stands for U or C
+var motif = 'CYGCCA';
 
-var sequence = 'agUGGgAGucaUGGCgGacugg';
+var sequence = 'caUGGCgGacugg';
 
-[...complementsSearch(motif, sequence)].length; // 2
+[...complementsSearch(motif, sequence)].length; // 1
 ```
 
 Rules for complementary pairs are the same as for the `SequenceCharacter` class described below.
