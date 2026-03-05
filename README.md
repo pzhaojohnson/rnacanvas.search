@@ -70,7 +70,7 @@ By default, mismatch penalty is `-1` and gap penalty is `-1.5`.
 
 (A matching pair corresponds to `+1` and the `cutoff` value is `1` by default.)
 
-IUPAC nucleic acid codes are also recognized by the `motifSearch()` function.
+[IUPAC nucleic acid codes](https://www.bioinformatics.org/sms/iupac.html) are also recognized by the `motifSearch()` function.
 
 ```javascript
 var motif = 'CYRCCA';
@@ -143,7 +143,7 @@ By default, mismatch penalty is `-1`, gap penalty is `-1.5` and wobble penalty i
 A complementary pair in a complement corresponds to `+1`
 and the `cutoff` value is `1` by default.
 
-IUPAC nucleic acid codes are recognized by the `complementsSearch()` function.
+[IUPAC nucleic acid codes](https://www.bioinformatics.org/sms/iupac.html) are recognized by the `complementsSearch()` function.
 
 ```javascript
 var motif = 'CYRCCA';
