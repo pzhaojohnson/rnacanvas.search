@@ -1,6 +1,6 @@
 {
   "name": "@rnacanvas/search",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Find motifs and complements",
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.7",
     "@babel/preset-typescript": "^7.23.3",
-    "@types/jquery": "^3.5.32",
+    "@types/jquery": "^4.0.0",
     "babel-jest": "^30.2.0",
     "css-loader": "^7.1.2",
     "jest": "^30.2.0",
