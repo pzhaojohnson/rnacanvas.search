@@ -123,7 +123,7 @@ var sequence = 'ucUGcCAGggacugca';
 
 The cutoff value "loosely" corresponds to the proportion of the motif that must be complementary to the sequence for a complement to be returned.
 
-Gaps are allowed in complements.
+Gaps and `G:U` / `G:T` pairs are allowed in complements.
 
 Mismatch, gap and wobble penalties can also be specified.
 
