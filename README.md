@@ -15,6 +15,59 @@ All exports of this package can be accessed as named imports.
 import { removeGapCharacters, SequenceCharacter } from '@rnacanvas/search';
 ```
 
+## `function motifSearch()`
+
+Search for motifs within a sequence.
+
+```javascript
+var motif = 'CUGCCA';
+
+var sequence = 'agcgCUGCCAugcga';
+
+var matches = [...motifSearch(motif, sequence)];
+
+matches.length; // 1
+
+// zero-based index of the match
+matches[0].index; // 4
+
+// one-based position of the match
+matches[0].position; // 5
+
+// the number of characters in the match
+matches[0].length; // 6
+```
+
+Lowering the `cutoff` value allows imperfect matches to be returned.
+
+```javascript
+var options = { cutoff: 0.8 };
+
+var motif = 'CUGCCA';
+
+var sequence = 'CaGCCA';
+
+// no matches (cutoff is 1 by default)
+[...motifSearch(motif, sequence)].length; // 0
+
+[...motifSearch(motif, sequence, { cutoff: 0.8 }].length; // 1
+```
+
+The cutoff value can be "loosely" thought of as the proportion of the motif that must match the sequence for a match to be returned.
+
+Mismatch and gap penalties can also be specified.
+
+motifSearch('CUGCCA', 'agCUGCCAuca', {
+  cutoff: 0.9,
+  mismatchPenalty: -1,
+  gapPenalty: -1.5,
+});
+```
+
+By default, mismatch penalty is `-1` and gap penalty is `-1.5`.
+
+(A matching pair corresponds to `+1` and the `cutoff` is `1` by default.)
+
 ## `function removeGapCharacters()`
 
 Returns a new string with all periods and dashes having been removed from the input string.
