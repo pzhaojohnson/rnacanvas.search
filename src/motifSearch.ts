@@ -1,4 +1,4 @@
-import type { Stringifiable } from './Stringifiable';
+import type { TextContent } from './TextContent';
 
 import { align } from './align';
 
@@ -7,11 +7,19 @@ import { backtrack } from './backtrack';
 /**
  * Finds instances of the motif in the sequence.
  */
-export function motifSearch(motif: Iterable<Stringifiable> | string, sequence: Iterable<Stringifiable> | string, options?: Options): Iterable<Match> {
+export function motifSearch(motif: Iterable<TextContent> | string, sequence: Iterable<TextContent> | string, options?: Options): Iterable<Match> {
   let cutoff = options?.cutoff ?? 1;
 
   let mismatchPenalty = options?.mismatchPenalty ?? -1;
   let gapPenalty = options?.gapPenalty ?? -1.5;
+
+  if (typeof motif == 'string') {
+    motif = [...motif].map(c => ({ textContent: c }));
+  }
+
+  if (typeof sequence == 'string') {
+    sequence = [...sequence].map(c => ({ textContent: c }));
+  }
 
   let motifArray = [...motif];
   let sequenceArray = [...sequence];

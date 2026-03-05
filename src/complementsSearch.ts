@@ -1,4 +1,4 @@
-import type { Stringifiable } from './Stringifiable';
+import type { TextContent } from './TextContent';
 
 import { align } from './align';
 
@@ -7,13 +7,21 @@ import { backtrack } from './backtrack';
 /**
  * Finds complements to the motif in the sequnce.
  */
-export function complementsSearch(motif: Iterable<Stringifiable> | string, sequence: Iterable<Stringifiable> | string, options?: Options): Iterable<Complement> {
+export function complementsSearch(motif: Iterable<TextContent> | string, sequence: Iterable<TextContent> | string, options?: Options): Iterable<Complement> {
   let cutoff = options?.cutoff ?? 1;
 
   let mismatchPenalty = options?.mismatchPenalty ?? -1;
   let gapPenalty = options?.gapPenalty ?? -1.5;
 
   let wobblePenalty = options?.wobblePenalty ?? -0.5;
+
+  if (typeof motif == 'string') {
+    motif = [...motif].map(c => ({ textContent: c }));
+  }
+
+  if (typeof sequence == 'string') {
+    sequence = [...sequence].map(c => ({ textContent: c }));
+  }
 
   // reverse motif when finding complements
   let matrix = align(

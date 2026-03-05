@@ -1,4 +1,4 @@
-import type { Stringifiable } from './Stringifiable';
+import type { TextContent } from './TextContent';
 
 import { AlignmentMatrix } from './AlignmentMatrix';
 
@@ -19,7 +19,7 @@ import { isWobblePair } from './isWobblePair';
  * It's generally expected that the vertical sequence is not as long as the horizontal sequence
  * (e.g., is a motif).
  */
-export function align(verticalSequence: Stringifiable[], horizontalSequence: Stringifiable[], options: AlignmentOptions): AlignmentMatrix {
+export function align(verticalSequence: TextContent[], horizontalSequence: TextContent[], options: AlignmentOptions): AlignmentMatrix {
   let { mismatchPenalty, gapPenalty, wobblePenalty } = options;
 
   if (typeof wobblePenalty != 'number') {
@@ -45,8 +45,8 @@ export function align(verticalSequence: Stringifiable[], horizontalSequence: Str
 
   for (let i = 1; i <= verticalSequence.length; i++) {
     for (let j = 1; j <= horizontalSequence.length; j++) {
-      let s1 = verticalSequence[i - 1].toString();
-      let s2 = horizontalSequence[j - 1].toString();
+      let s1 = verticalSequence[i - 1].textContent;
+      let s2 = horizontalSequence[j - 1].textContent;
 
       let c1: SequenceCharacter | undefined = s1.length == 1 ? new SequenceCharacter(s1) : undefined;
 

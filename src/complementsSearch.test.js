@@ -9,7 +9,7 @@ test('`function complementsSearch()`', () => {
 
   [...complements].forEach(c => expect(c.length).toBe(5));
 
-  // stringifiable motif and sequence
+  // nucleobase inputs
   var complements = complementsSearch(
     [...'UGCCA'].map(c => new NucleobaseMock(c)),
     [...PEMV2].map(c => new NucleobaseMock(c)),
@@ -20,7 +20,7 @@ test('`function complementsSearch()`', () => {
 
   [...complements].forEach(c => expect(c.length).toBe(5));
 
-  // stringifiable sequence
+  // nucleobase sequence
   var complements = complementsSearch(
     'UGCCA',
     [...PEMV2].map(c => new NucleobaseMock(c)),
@@ -31,7 +31,7 @@ test('`function complementsSearch()`', () => {
 
   [...complements].forEach(c => expect(c.length).toBe(5));
 
-  // stringifiable motif
+  // nucleobase motif
   var complements = complementsSearch(
     [...'UGCCA'].map(c => new NucleobaseMock(c)),
     PEMV2,
@@ -60,7 +60,7 @@ test('`function complementsSearch()`', () => {
 
   expect([...complements].map(c => c.position)).toStrictEqual([2111, 2149, 3919, 3922, 4043]);
 
-  var motif = [...'CUGCCA'];
+  var motif = [...'CUGCCA'].map(c => ({ textContent: c }));
 
   // a base with empty text content
   motif[3] = new NucleobaseMock('');
@@ -69,7 +69,7 @@ test('`function complementsSearch()`', () => {
 
   expect([...complements].length).toBe(0);
 
-  var seq = [...PEMV2];
+  var seq = [...PEMV2].map(c => ({ textContent: c }));
 
   // bases with text content containing more than one character
   seq[100] = new NucleobaseMock('AG');
@@ -87,14 +87,14 @@ test('`function complementsSearch()`', () => {
 });
 
 class NucleobaseMock {
-  #character;
+  #textContent;
 
-  constructor(character) {
-    this.#character = character;
+  constructor(textContent) {
+    this.#textContent = textContent;
   }
 
-  toString() {
-    return this.#character;
+  get textContent() {
+    return this.#textContent;
   }
 }
 

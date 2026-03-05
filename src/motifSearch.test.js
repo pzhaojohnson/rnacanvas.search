@@ -9,7 +9,7 @@ test('`function motifSearch()`', () => {
 
   [...matches].forEach(m => expect(m.length).toBe(6));
 
-  // stringifiable motif and sequence
+  // nucleobase inputs
   var matches = motifSearch(
     [...'CUGCCA'].map(c => new NucleobaseMock(c)),
     [...PEMV2].map(c => new NucleobaseMock(c)),
@@ -20,7 +20,7 @@ test('`function motifSearch()`', () => {
 
   [...matches].forEach(m => expect(m.length).toBe(6));
 
-  // stringifiable sequence
+  // nucleobase sequence
   var matches = motifSearch(
     'CUGCCA',
     [...PEMV2].map(c => new NucleobaseMock(c)),
@@ -31,7 +31,7 @@ test('`function motifSearch()`', () => {
 
   [...matches].forEach(m => expect(m.length).toBe(6));
 
-  // stringifiable motif
+  // nucleobase motif
   var matches = motifSearch(
     [...'CUGCCA'].map(c => new NucleobaseMock(c)),
     PEMV2,
@@ -88,14 +88,14 @@ test('`function motifSearch()`', () => {
 });
 
 class NucleobaseMock {
-  #character;
+  #textContent;
 
-  constructor(character) {
-    this.#character = character;
+  constructor(textContent) {
+    this.#textContent = textContent;
   }
 
-  toString() {
-    return this.#character;
+  get textContent() {
+    return this.#textContent;
   }
 }
 

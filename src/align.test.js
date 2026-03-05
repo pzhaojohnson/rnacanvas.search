@@ -57,8 +57,8 @@ test('`function align()`', () => {
   var seq = randomSequence(20);
 
   // bases with empty text content
-  seq[1] = '';
-  seq[5] = '';
+  seq[1] = { textContent: '' };
+  seq[5] = { textContent: '' };
 
   expect(() => align(seq, randomSequence(100), options)).not.toThrow();
   expect(() => align(randomSequence(3), seq, options)).not.toThrow();
@@ -68,8 +68,8 @@ test('`function align()`', () => {
   var seq = randomSequence(10);
 
   // bases with text content containing more than one character
-  seq[2] = 'AG';
-  seq[9] = 'asdf';
+  seq[2] = { textContent: 'AG' };
+  seq[9] = { textContent: 'asdf' };
 
   expect(() => align(seq, randomSequence(100), options)).not.toThrow();
   expect(() => align(randomSequence(5), seq, options)).not.toThrow();
@@ -78,7 +78,7 @@ test('`function align()`', () => {
 });
 
 function randomSequence(length) {
-  return Array.from({ length }).map(() => randomCharacter());
+  return Array.from({ length }).map(() => ({ textContent: randomCharacter() }));
 }
 
 function randomCharacter() {

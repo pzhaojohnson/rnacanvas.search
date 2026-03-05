@@ -63,7 +63,7 @@ test('`function backtrack()`', () => {
 });
 
 function randomSequence(length) {
-  return Array.from({ length }).map(() => randomCharacter());
+  return Array.from({ length }).map(() => ({ textContent: randomCharacter() }));
 }
 
 function randomCharacter() {
