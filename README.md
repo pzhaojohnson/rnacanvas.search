@@ -168,6 +168,14 @@ removeGapCharacters('.A-GU..C--'); // "AGUC"
 removeGapCharacters('---...'); // ""
 ```
 
+## `function removeWhitespace()`
+
+Remove all whitespace characters from a string.
+
+```javascript
+removeWhitespace('A U\tG\nC\rT\r\n'); // "AUGCT"
+```
+
 ## `class SequenceCharacter`
 
 Represents a character in a sequence.
