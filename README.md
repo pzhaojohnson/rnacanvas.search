@@ -143,7 +143,7 @@ By default, mismatch penalty is `-1`, gap penalty is `-1.5` and wobble penalty i
 A complementary pair in a complement corresponds to `+1`
 and the `cutoff` value is `1` by default.
 
-IUPAC codes are recognized by the `complementsSearch()` function.
+IUPAC nucleic acid codes are recognized by the `complementsSearch()` function.
 
 ```javascript
 var motif = 'CYRCCA';
