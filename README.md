@@ -12,7 +12,7 @@ All exports of this package can be accessed as named imports.
 
 ```javascript
 // some example imports
-import { removeGapCharacters, SequenceCharacter } from '@rnacanvas/search';
+import { motifSearch, complementsSearch } from '@rnacanvas/search';
 ```
 
 ## `function motifSearch()`
@@ -24,6 +24,7 @@ var motif = 'CUGCCA';
 
 var sequence = 'agCUGCCAugcga';
 
+// returns a collection of match objects
 var matches = [...motifSearch(motif, sequence)];
 
 matches.length; // 1
@@ -80,6 +81,75 @@ matches.length; // 2
 ```
 
 IUPAC code matching rules follow those of the `SequenceCharacter` class described below.
+
+## `function complementsSearch()`
+
+Search for complements to a motif within a sequence.
+
+```javascript
+var motif = 'CUGCCA';
+
+var sequence = 'ucUGGCAGggacugca';
+
+// returns a collection of complement objects
+var complements = [...complementsSearch(motif, sequence)];
+
+complements.length; // 1
+
+// zero-based index of the complement
+complements[0].index; // 2;
+
+// one-based position of the complement
+complements[0].position; // 3
+
+// the number of characters in the complement
+complements[0].length; // 6
+```
+
+Lowering the `cutoff` value allows for imperfect complements to be returned.
+
+```javascript
+var motif = 'CUGCCA';
+
+var sequence = 'ucUGcCAGggacugca';
+
+// no complements (cutoff is 1 by default)
+[...complementsSearch(motif, sequence)].length; // 0
+
+[...complementsSearch(motif, sequence, { cutoff: 0.8 }].length; // 1
+```
+
+The cutoff value "loosely" corresponds to the proportion of the motif that must be complementary to the sequence for a complement to be returned.
+
+Mismatch, gap and wobble penalties can also be specified.
+
+```javascript
+complementsSearch('CUGCCA', 'ugUGGCAGgga', {
+  cutoff: 0.9,
+  mismatchPenalty: -1,
+  gapPenalty: -1.5,
+  wobblePenalty: -0.5,
+});
+```
+
+By default, mismatch penalty is `-1`, gap penalty is `-1.5` and wobble penalty is `-0.5`.
+
+(Wobble penalty applies to any `G:U` or `G:T` pairs in complements.)
+
+A complementary pair in a complement corresponds to `+1`
+and the `cutoff` value is `1` by default.
+
+IUPAC codes are recognized by the `complementsSearch()` function.
+
+```javascript
+var motif = 'CYRCCA';
+
+var sequence = 'agUGGgAGucaUGGCgGacugg';
+
+[...complementsSearch(motif, sequence)].length; // 2
+```
+
+Rules for complementary pairs are the same as for the `SequenceCharacter` class described below.
 
 ## `function removeGapCharacters()`
 
