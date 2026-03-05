@@ -170,7 +170,7 @@ removeGapCharacters('---...'); // ""
 
 ## `function removeWhitespace()`
 
-Remove all whitespace characters from a string.
+Returns a new string with all whitespace characters having been removed.
 
 ```javascript
 removeWhitespace('A U\tG\nC\rT\r\n'); // "AUGCT"
