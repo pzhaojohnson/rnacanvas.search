@@ -54,6 +54,8 @@ var sequence = 'CaGCCA';
 
 The cutoff value can be "loosely" thought of as the proportion of the motif that must match the sequence for a match to be returned.
 
+Gaps are allowed in matches.
+
 Mismatch and gap penalties can also be specified.
 
 ```javascript
@@ -120,6 +122,8 @@ var sequence = 'ucUGcCAGggacugca';
 ```
 
 The cutoff value "loosely" corresponds to the proportion of the motif that must be complementary to the sequence for a complement to be returned.
+
+Gaps are allowed in complements.
 
 Mismatch, gap and wobble penalties can also be specified.
 
