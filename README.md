@@ -22,27 +22,25 @@ Search for motifs within a sequence.
 ```javascript
 var motif = 'CUGCCA';
 
-var sequence = 'agcgCUGCCAugcga';
+var sequence = 'agCUGCCAugcga';
 
 var matches = [...motifSearch(motif, sequence)];
 
 matches.length; // 1
 
 // zero-based index of the match
-matches[0].index; // 4
+matches[0].index; // 2
 
 // one-based position of the match
-matches[0].position; // 5
+matches[0].position; // 3
 
 // the number of characters in the match
 matches[0].length; // 6
 ```
 
-Lowering the `cutoff` value allows imperfect matches to be returned.
+Lowering the `cutoff` value allows for imperfect matches to be returned.
 
 ```javascript
-var options = { cutoff: 0.8 };
-
 var motif = 'CUGCCA';
 
 var sequence = 'CaGCCA';
@@ -57,6 +55,7 @@ The cutoff value can be "loosely" thought of as the proportion of the motif that
 
 Mismatch and gap penalties can also be specified.
 
+```javascript
 motifSearch('CUGCCA', 'agCUGCCAuca', {
   cutoff: 0.9,
   mismatchPenalty: -1,
@@ -66,7 +65,21 @@ motifSearch('CUGCCA', 'agCUGCCAuca', {
 
 By default, mismatch penalty is `-1` and gap penalty is `-1.5`.
 
-(A matching pair corresponds to `+1` and the `cutoff` is `1` by default.)
+(A matching pair corresponds to `+1` and the `cutoff` value is `1` by default.)
+
+IUPAC nucleic acid codes are also recognized by the `motifSearch()` function.
+
+```javascript
+var motif = 'CYRCCA';
+
+var sequence = 'aggCcGCCAugccCUaCCAag';
+
+var matches = [...motifSearch(motif, sequence)];
+
+matches.length; // 2
+```
+
+IUPAC code matching rules follow those of the `SequenceCharacter` class described below.
 
 ## `function removeGapCharacters()`
 
