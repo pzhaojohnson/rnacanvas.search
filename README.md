@@ -39,6 +39,27 @@ matches[0].position; // 3
 matches[0].length; // 6
 ```
 
+Sequences of bases can also be input to the `motifSearch()` function instead of strings.
+
+```javascript
+var motif = [...'CUGCCA'].map(c => Nucleobase.create(c));
+
+[...'agCUGCCAugcga'].forEach(c => app.drawing.addBase(c));
+
+[...motifSearch(motif, app.drawing.bases)].length; // 1
+
+[...motifSearch('CUGCCA', app.drawing.bases)].length; // 1
+```
+
+Any sequence of objects fulfilling the `TextContent` interface (below)
+can be input to the `motifSearch()` function.
+
+```typescript
+interface TextContent {
+  textContent: string;
+}
+```
+
 Lowering the `cutoff` value allows for imperfect matches to be returned.
 
 ```javascript
@@ -106,6 +127,27 @@ complements[0].position; // 3
 
 // the number of characters in the complement
 complements[0].length; // 6
+```
+
+Sequences of bases can also be input to the `complementsSearch()` function instead of strings.
+
+```javascript
+var motif = [...'CUGCCA'].map(c => Nucleobase.create(c));
+
+[...'ucUGGCAGggacugca'].forEach(c => app.drawing.addBase(c));
+
+[...complementsSearch(motif, app.drawing.bases)].length; // 1
+
+[...complementsSearch('CUGCCA', app.drawing.bases)].length; // 1
+```
+
+Any sequence of objects fulfilling the `TextContent` interface (below)
+can be input to the `complementsSearch()` function.
+
+```typescript
+interface TextContent {
+  textContent: string;
+}
 ```
 
 Lowering the `cutoff` value allows for imperfect complements to be returned.
