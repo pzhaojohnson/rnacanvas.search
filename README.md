@@ -70,6 +70,9 @@ interface TextContent {
 }
 ```
 
+<b>Note that bases with empty text content or text content containing more than one character
+won't be matched with other bases or characters.</b>
+
 Lowering the `cutoff` value allows for imperfect matches to be returned.
 
 ```javascript
@@ -169,6 +172,9 @@ interface TextContent {
   textContent: string;
 }
 ```
+
+<b>Note that bases with empty text content or text content containing more than one character
+won't be complemented with other bases or characters.</b>
 
 Lowering the `cutoff` value also allows for imperfect complements to be returned.
 
