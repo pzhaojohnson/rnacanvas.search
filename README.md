@@ -39,6 +39,16 @@ matches[0].position; // 3
 matches[0].length; // 6
 ```
 
+Motif search is not case-sensitive.
+
+```javascript
+var motif = 'cugcca';
+
+var sequence = 'agCUGCCAugcga';
+
+[...motifSearch(motif, sequence)].length; // 1
+```
+
 Sequences of bases can also be input to the `motifSearch()` function instead of strings.
 
 ```javascript
@@ -129,6 +139,16 @@ complements[0].position; // 3
 complements[0].length; // 6
 ```
 
+Complements search is not case-sensitive.
+
+```javascript
+var motif = 'cugcca';
+
+var sequence = 'ucUGGCAGggacugca';
+
+[...complementsSearch(motif, sequence)].length; // 1
+```
+
 Sequences of bases can also be input to the `complementsSearch()` function instead of strings.
 
 ```javascript
@@ -150,7 +170,7 @@ interface TextContent {
 }
 ```
 
-Lowering the `cutoff` value allows for imperfect complements to be returned.
+Lowering the `cutoff` value also allows for imperfect complements to be returned.
 
 ```javascript
 var motif = 'CUGCCA';
